@@ -13,10 +13,12 @@ app.use(express.json());
 
 app.use('/api/tasks', taskRoutes);
 
+const PORT = process.env.PORT || 3000;
+
 sequelize.sync().then(() => {
     console.log('Banco sincronizado');
 
-    app.listen(3000, () => {
-        console.log('Servidor rodando');
+    app.listen(PORT, () => {
+        console.log(`Servidor rodando na porta ${PORT}`);
     });
 });
