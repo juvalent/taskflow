@@ -15,10 +15,14 @@ app.use('/api/tasks', taskRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-sequelize.sync().then(() => {
-    console.log('Banco sincronizado');
+sequelize.sync()
+    .then(() => {
+        console.log('Banco sincronizado');
 
-    app.listen(PORT, () => {
-        console.log(`Servidor rodando na porta ${PORT}`);
+        app.listen(PORT, () => {
+            console.log(`Servidor rodando na porta ${PORT}`);
+        });
+    })
+    .catch((error) => {
+        console.error('Erro ao conectar no banco:', error);
     });
-});
